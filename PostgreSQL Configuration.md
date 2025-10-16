@@ -227,11 +227,13 @@ WHERE name IN (
 );
 ```
 ### บันทึกผลการทดลอง
-```
-บันทึกรูปผลของ configuration ทั้ง 6 ค่า
-<img width="1400" height="445" alt="pos1" src="https://github.com/user-attachments/assets/bdb80bf1-4ef0-4e68-b096-1803cc687b8e" />
 
-```
+บันทึกรูปผลของ configuration ทั้ง 6 ค่า
+<img width="1400" height="445" alt="pos1" src="https://github.com/user-attachments/assets/31f8bee9-17c7-452d-b795-e0adaf41991b" />
+
+
+
+
 
 ### Step 2: การปรับแต่งพารามิเตอร์แบบค่อยเป็นค่อยไป
 
