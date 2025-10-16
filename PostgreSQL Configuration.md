@@ -505,10 +505,16 @@ DELETE FROM large_table WHERE id % 10 = 0;
 VACUUM (ANALYZE, VERBOSE) large_table;
 ```
 ### ผลการทดลอง
-```
+
 1. รูปผลการทดลอง จากคำสั่ง VACUUM (ANALYZE, VERBOSE) large_table;
+<img width="1421" height="822" alt="vacuum" src="https://github.com/user-attachments/assets/62178178-fcd3-4ce2-a9b4-4b5b7569e4c6" />
+
+
+
 2. อธิบายผลลัพธ์ที่ได้
-```
+ทำการ ล้างข้อมูลที่ไม่ใช้แล้วและ ปรับปรุงสถิติของตาราง เพื่อให้การ Query เร็วขึ้น
+
+
 ### Step 6: การติดตาม Memory Usage
 
 #### 6.1 สร้างฟังก์ชันติดตาม Memory
