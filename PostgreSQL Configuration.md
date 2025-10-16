@@ -353,9 +353,13 @@ docker exec -it postgres-config psql -U postgres
 SHOW wal_buffers;
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการเปลี่ยนแปลงค่า wal_buffers
-```
+
+<img width="370" height="130" alt="wal" src="https://github.com/user-attachments/assets/351e667c-5c3e-48a8-ac9d-7ba445ecc41c" />
+
+
+
 
 #### 3.5 ปรับแต่ง Effective Cache Size
 ```sql
@@ -370,9 +374,12 @@ SELECT pg_reload_conf();
 SHOW effective_cache_size;
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการเปลี่ยนแปลงค่า effective_cache_size
-```
+
+<img width="470" height="142" alt="effective" src="https://github.com/user-attachments/assets/eabbecac-54a2-4326-9210-fe32c8a617c7" />
+
+
 
 ### Step 4: ตรวจสอบผล
 
