@@ -453,11 +453,20 @@ ORDER BY data
 LIMIT 1000;
 ```
 ### ผลการทดลอง
-```
-1. คำสั่ง EXPLAIN(ANALYZE,BUFFERS) คืออะไร 
+
+
+1. คำสั่ง EXPLAIN(ANALYZE,BUFFERS) คืออะไร
+  - ใช้เพื่อวิเคราะห์และแสดง แผนการทำงานของคำสั่ง SQLจริงพร้อมเวลาการทำงาน ANALYZE และการใช้หน่วยความจำ buffer เพื่อดูประสิทธิภาพของคำสั่ง
 2. รูปผลการรัน
+
+<img width="1918" height="1078" alt="test1" src="https://github.com/user-attachments/assets/ffccb2ef-3cd5-4200-8f45-44d9dacf9373" />
+
+
+
 3. อธิบายผลลัพธ์ที่ได้
-```
+ใช้ การอ่านข้อมูลแบบขนานและ จัดเรียงข้อมูลใช้เวลา รวม ~1 วินาที โดยมีการเข้าถึง buffer ในหน่วยความจำ 5,135 ครั้ง
+
+
 ```sql
 -- ทดสอบ Hash operation
 EXPLAIN (ANALYZE, BUFFERS)
