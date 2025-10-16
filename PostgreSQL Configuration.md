@@ -249,9 +249,12 @@ WHERE name = 'shared_buffers';
 
 ### ผลการทดลอง
 1.รูปผลการรันคำสั่ง
+
 <img width="717" height="173" alt="pos2" src="https://github.com/user-attachments/assets/ff41dc37-d02e-44f2-bf02-76c224bbbdb5" />
+
 2. ค่า  shared_buffers มีการกำหนดค่าไว้เท่าไหร่ (ใช้ setting X unit)
 - 16384 × 8KB = 131,072 KB
+
 3. ค่า  pending_restart ในผลการทดลองมีค่าเป็นอย่างไร และมีความหมายอย่างไร
   - f
 
