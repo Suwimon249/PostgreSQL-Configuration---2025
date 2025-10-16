@@ -778,10 +778,21 @@ FROM performance_results
 ORDER BY test_timestamp DESC;
 ```
 ### ผลการทดลอง
-```
+
+
 1. รูปผลการทดลอง
+<img width="831" height="297" alt="image" src="https://github.com/user-attachments/assets/a7621e90-6f33-4875-8485-863f2f2c3870" />
+
+
+
+
 2. อธิบายผลลัพธ์ที่ได้
-```
+  - aggregation ใช้เวลาเฉลี่ย 2652 ms
+
+    large_sort ใช้เวลาเฉลี่ย 349 ms
+
+    ทั้งสองแบบอยู่ในโหมดการตั้งค่าเดียวกันคือ optimized
+
 
 
 ### Step 9: การ Monitoring และ Alerting
@@ -815,9 +826,13 @@ FROM pg_settings WHERE name = 'maintenance_work_mem';
 SELECT * FROM memory_monitor;
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการทดลอง
-```
+<img width="786" height="187" alt="image" src="https://github.com/user-attachments/assets/5bf2c212-aefb-4ff4-b3c8-5a8f80ab13c7" />
+
+
+
+
 
 ### Step 10: การจำลอง Load Testing
 
@@ -864,9 +879,16 @@ CREATE INDEX idx_orders_product_id ON load_test_orders(product_id);
 CREATE INDEX idx_orders_date ON load_test_orders(order_date);
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการทดลอง การสร้าง FUNCTION และ INDEX
-```
+<img width="1358" height="801" alt="image" src="https://github.com/user-attachments/assets/e8959157-a328-4f84-8c07-16493a67e2ee" />
+
+<img width="1378" height="764" alt="image" src="https://github.com/user-attachments/assets/b45ac883-7796-470b-951f-8e8dedb0726a" />
+
+
+
+
+
 
 #### 10.2 การทดสอบ Query Performance
 ```sql
@@ -1039,18 +1061,37 @@ $$ LANGUAGE plpgsql;
 -- รัน load test ทดสอบเบาๆ
 SELECT * FROM simulate_oltp_workload(25);
 
-```
-### ผลการทดลอง
-```
+
+### ผลการทดลองเบาๆ
+
 รูปผลการทดลอง
-```
+
+<img width="1114" height="238" alt="image" src="https://github.com/user-attachments/assets/c9a05b11-5884-4562-afdd-7104c961e0ae" />
+
+
+
+
 -- ทดสอบปานกลาง  
 SELECT * FROM simulate_oltp_workload(100);
-### ผลการทดลอง
-```
+### ผลการทดลองปานกลาง
+
 1. รูปผลการทดลอง
+<img width="986" height="279" alt="image" src="https://github.com/user-attachments/assets/c4dd6134-fcde-4ef5-af77-357f61830d0d" />
+
+
+
 2. อธิบายผลการทดลอง การ SELECT , INSERT, UPDATE, DELETE เป็นอย่างไร 
-```
+
+  1.SELECT = อ่านข้อมูลจากหลายตารางพร้อมเงื่อนไข ใช้เวลาปานกลาง
+
+  2.NSERT = เพิ่มข้อมูลใหม่ลงตาราง ใช้เวลาน้อยสุด ทำงานเร็วสุด
+
+  3.UPDATE = แก้ไขข้อมูลเดิม ต้องค้นหาก่อนอัปเดต ใช้เวลามากกว่า INSERT
+
+  4.DELETE = ปลี่ยนสถานะข้อมูลโดยไม่ลบจริง ใช้เวลาพอ ๆ กับ UPDATE
+
+
+
 
 -- ทดสอบหนักขึ้น เครื่องใครไม่ไหวผ่านก่อน หรือเปลี่ยนค่า 500 เป็น 200 :)
 SELECT * FROM simulate_oltp_workload(500);
@@ -1250,10 +1291,15 @@ $$ LANGUAGE plpgsql;
 SELECT * FROM run_benchmark_suite();
 ```
 ### ผลการทดลอง
-```
-รูปผลการทดลอง
-```
 
+รูปผลการทดลอง
+<img width="943" height="660" alt="image" src="https://github.com/user-attachments/assets/5be749c4-d564-4bdb-bbca-c0c5ab3ba7a2" />
+
+
+
+
+
+```
 -- ดูผลการทดสอบ
 SELECT 
     config_name,
@@ -1267,9 +1313,13 @@ FROM benchmark_results
 ORDER BY test_timestamp DESC;
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการทดลอง
-```
+<img width="1104" height="312" alt="image" src="https://github.com/user-attachments/assets/53fcd990-3882-43b5-a315-69b0d34807db" />
+
+
+
+
 
 ### Step 12: การจัดการ Configuration แบบ Advanced
 
@@ -1532,11 +1582,18 @@ $$ LANGUAGE plpgsql;
 
 -- ใช้งาน auto-tuning
 SELECT auto_tune_memory();
-```
+
 ### ผลการทดลอง
-```
+
 รูปผลการทดลอง
-```
+
+<img width="712" height="479" alt="image" src="https://github.com/user-attachments/assets/5579cb4a-7729-4a49-b1ee-1a9040b4e39c" />
+
+
+
+
+
+
 ```sql
 -- ดูการเปลี่ยนแปลง buffer hit ratio
 SELECT 
@@ -1549,9 +1606,14 @@ WHERE heap_blks_read + heap_blks_hit > 0
 ORDER BY hit_ratio;
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการทดลอง
-```
+<img width="1016" height="333" alt="image" src="https://github.com/user-attachments/assets/4ed7a4f5-f8af-47af-938e-3ba6d5e4f154" />
+
+
+
+
+
 
 ### การคำนวณ Memory Requirements
 
@@ -1583,9 +1645,22 @@ Estimated Usage = 2GB + (32MB × 100 × 0.5) + 512MB + 64MB
 
 ## คำถามท้ายการทดลอง
 1. หน่วยความจำใดบ้างที่เป็น shared memory และมีหลักในการตั้งค่าอย่างไร
+  - หน่วยความจำที่ใช้ร่วมกัน เช่น shared_buffers, wal_buffers ใช้เก็บข้อมูลชั่วคราวเพื่อให้เข้าถึงเร็วขึ้น ปกติตั้งประมาณ 25% ของ RAM
+   
 2. Work memory และ maintenance work memory คืออะไร มีหลักการในการกำหนดค่าอย่างไร
+  - work_mem ใช้ตอนประมวลผลคำสั่ง , maintenance_work_mem ใช้ตอนบำรุงระบบ ตั้งค่าให้เหมาะกับจำนวน connection และขนาดงาน
+
 3. หากมี RAM 16GB และต้องการกำหนด connection = 200 ควรกำหนดค่า work memory และ maintenance work memory อย่างไร
+  - ควรตั้ง work_mem = 48MB และ maintenance_work_mem = 1GB เพื่อให้ระบบใช้หน่วยความจำอย่างมีประสิทธิภาพ
+
 4. ไฟล์ postgresql.conf และ postgresql.auto.conf  มีความสัมพันธ์กันอย่างไร
+  - postgresql.conf คือไฟล์หลัก , postgresql.auto.conf คือไฟล์ที่ระบบเขียนให้อัตโนมัติ ถ้าค่าซ้ำกัน ระบบจะใช้ค่าจาก auto.conf ก่อน
+
 5. Buffer hit ratio คืออะไร
+  - คืออัตราการอ่านข้อมูลจากหน่วยความจำแทนดิสก์ ค่ายิ่งสูงยิ่งดีเพราะระบบทำงานเร็วขึ้น
+
 6. แสดงผลการคำนวณ การกำหนดค่าหน่วยความจำต่าง ๆ โดยอ้างอิงเครื่องของตนเอง
+  - shared_buffers = 4GB , work_mem = 48MB , maintenance_work_mem = 1GB , effective_cache_size = 8GB ช่วยให้ระบบใช้ RAM ได้เหมาะสมและประสิทธิภาพดีขึ้น
+
 7. การสแกนของฐานข้อมูล PostgreSQL มีกี่แบบอะไรบ้าง เปรียบเทียบการสแกนแต่ละแบบ
+  - Sequential Scan – อ่านทุกแถว เหมาะกับตารางเล็ก , Index Scan – อ่านผ่านดัชนี เร็วกว่าถ้ามีเงื่อนไข , Bitmap Index Scan – รวมหลายดัชนี เหมาะกับเงื่อนไขซับซ้อน
