@@ -275,11 +275,16 @@ WHERE name = 'shared_buffers';
 docker exec -it -u postgres postgres-config pg_ctl restart -D /var/lib/postgresql/data -m fast
 
 ### ผลการทดลอง
-```
-รูปผลการเปลี่ยนแปลงค่า pending_restart
-รูปหลังจาก restart postgres
 
-```
+รูปผลการเปลี่ยนแปลงค่า pending_restart
+<img width="717" height="173" alt="pos2" src="https://github.com/user-attachments/assets/dca83f1c-42eb-478b-9389-b07862926aed" />
+
+
+รูปหลังจาก restart postgres
+<img width="766" height="303" alt="pos4" src="https://github.com/user-attachments/assets/42dfb779-a8e9-452d-85ed-bcbc2d7480d0" />
+
+
+
 
 #### 2.2 ปรับแต่ง Work Memory (ไม่ต้อง restart)
 ```sql
