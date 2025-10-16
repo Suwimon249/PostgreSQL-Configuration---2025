@@ -512,7 +512,7 @@ VACUUM (ANALYZE, VERBOSE) large_table;
 
 
 2. อธิบายผลลัพธ์ที่ได้
-ทำการ ล้างข้อมูลที่ไม่ใช้แล้วและ ปรับปรุงสถิติของตาราง เพื่อให้การ Query เร็วขึ้น
+- ทำการ ล้างข้อมูลที่ไม่ใช้แล้วและ ปรับปรุงสถิติของตาราง เพื่อให้การ Query เร็วขึ้น
 
 
 ### Step 6: การติดตาม Memory Usage
@@ -555,9 +555,12 @@ SELECT
 FROM get_memory_usage();
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการทดลอง
-```
+<img width="828" height="337" alt="mem" src="https://github.com/user-attachments/assets/698cb710-ad91-4a1d-ace9-c96e645b71ea" />
+
+
+
 
 #### 6.2 การติดตาม Buffer Hit Ratio
 ```sql
@@ -576,10 +579,21 @@ WHERE heap_blks_read + heap_blks_hit > 0
 ORDER BY heap_blks_read + heap_blks_hit DESC;
 ```
 ### ผลการทดลอง
-```
+
+
+
 1. รูปผลการทดลอง
+
+<img width="982" height="411" alt="Buffer" src="https://github.com/user-attachments/assets/affcca09-4a54-44b1-ab12-81f19034ede2" />
+
+
+
 2. อธิบายผลลัพธ์ที่ได้
-```
+ยิ่งค่า hit_ratio_percent สูงแปลว่าฐานข้อมูลทำงานได้เร็วและมีการใช้หน่วยความจำ cache ได้มีประสิทธิภาพดี
+
+
+
+
 #### 6.3 ดู Buffer Hit Ratio ทั้งระบบ
 ```sql
 SELECT datname,
