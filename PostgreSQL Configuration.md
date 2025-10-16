@@ -604,10 +604,18 @@ FROM pg_stat_database
 WHERE datname = current_database();
 ```
 ### ผลการทดลอง
-```
+
 1. รูปผลการทดลอง
+<img width="953" height="243" alt="image" src="https://github.com/user-attachments/assets/3eee393b-e9b3-4105-9348-c08b03ab3744" />
+
+
+
+
 2. อธิบายผลลัพธ์ที่ได้
-```
+  - อ่านข้อมูลจากดิสก์เพียง 3,481 ครั้ง แต่ดึงจากหน่วยความจำ (cache) ถึง 4,051,198 ครั้ง มีค่า hit ratio = 99.91%
+
+
+
 
 #### 6.4 ดู Table ที่มี Disk I/O มาก
 ```sql
@@ -625,10 +633,17 @@ ORDER BY heap_blks_read DESC
 LIMIT 10;
 ```
 ### ผลการทดลอง
-```
+
 1. รูปผลการทดลอง
+<img width="1101" height="352" alt="image" src="https://github.com/user-attachments/assets/ea376eb3-b2c6-45d1-98a4-7a8f1d8dc50e" />
+
+
+
 2. อธิบายผลลัพธ์ที่ได้
-```
+  - ผลลัพธ์แสดง 10 ตารางที่เข้าถึงข้อมูลจากดิสก์มากที่สุด พร้อมบอกขนาดและอัตราการใช้หน่วยความจำ เพื่อช่วยวิเคราะห์ว่าตารางใดควรปรับจูนหรือเพิ่ม cache เพื่อเพิ่มประสิทธิภาพ
+
+
+
 ### Step 7: การปรับแต่ง Autovacuum
 
 #### 7.1 ทำความเข้าใจ Autovacuum Parameters
@@ -640,10 +655,25 @@ WHERE name LIKE '%autovacuum%'
 ORDER BY name;
 ```
 ### ผลการทดลอง
-```
+
 1. รูปผลการทดลอง
+<img width="1390" height="518" alt="image" src="https://github.com/user-attachments/assets/75891ad0-d7d0-456c-a29e-8115508d7d18" />
+
+
+
+
 2. อธิบายค่าต่าง ๆ ที่มีความสำคัญ
-```
+   
+   1.autovacuum = on เปิดใช้งานระบบทำความสะอาดอัตโนมัติของ PostgreSQL ✅
+   
+   2.autovacuum_naptime = 60s  ระบบจะตรวจสอบทุก 60 วินาทีว่ามีตารางไหนต้อง vacuum
+   
+   3.autovacuum_vacuum_scale_factor = 0.2  ถ้ามีข้อมูลเปลี่ยนแปลงเกิน 20% ของตาราง จะเริ่ม vacuum
+   
+   4.autovacuum_analyze_scale_factor = 0.1  ถ้ามีข้อมูลเปลี่ยนเกิน 10% จะเริ่มวิเคราะห์ (ANALYZE) เพื่ออัปเดตสถิติการ query
+
+
+
 
 #### 7.2 การปรับแต่ง Autovacuum สำหรับประสิทธิภาพ
 ```sql
@@ -670,9 +700,12 @@ ALTER SYSTEM SET autovacuum_work_mem = '512MB';
 SELECT pg_reload_conf();
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการทดลองการปรับแต่ง Autovacuum (Capture รวมทั้งหมด 1 รูป)
-```
+
+<img width="912" height="682" alt="image" src="https://github.com/user-attachments/assets/99154feb-b25a-4321-a93b-577d9c56663d" />
+
+
 
 ### Step 8: Performance Testing และ Benchmarking
 
