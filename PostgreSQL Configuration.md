@@ -305,9 +305,12 @@ FROM pg_settings
 WHERE name = 'work_mem';
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการเปลี่ยนแปลงค่า work_mem
-```
+<img width="503" height="172" alt="workmem" src="https://github.com/user-attachments/assets/4d3ec397-aa35-4d75-a0b3-2e058ccf4b66" />
+
+
+
 
 #### 3.3 ปรับแต่ง Maintenance Work Memory
 ```sql
@@ -322,9 +325,12 @@ SELECT pg_reload_conf();
 SHOW maintenance_work_mem;
 ```
 ### ผลการทดลอง
-```
+
 รูปผลการเปลี่ยนแปลงค่า maintenance_work_mem
-```
+<img width="432" height="132" alt="main" src="https://github.com/user-attachments/assets/38ac2a66-4e76-447f-ac06-0d979d9f5c83" />
+
+
+
 
 #### 3.4 ปรับแต่ง WAL Buffers
 ```sql
