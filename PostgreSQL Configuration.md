@@ -242,14 +242,18 @@ SELECT name, setting, unit, source, pending_restart
 FROM pg_settings 
 WHERE name = 'shared_buffers';
 
-### ผลการทดลอง
 ```
+
+```
+### ผลการทดลอง
 1.รูปผลการรันคำสั่ง
 <img width="716" height="168" alt="image" src="https://github.com/user-attachments/assets/4c9ab82f-9eb8-462a-8e56-b44ecd14d5f3" />
 2. ค่า  shared_buffers มีการกำหนดค่าไว้เท่าไหร่ (ใช้ setting X unit)
 - 16384 × 8KB = 131,072 KB
 3. ค่า  pending_restart ในผลการทดลองมีค่าเป็นอย่างไร และมีความหมายอย่างไร
   - f
+```
+
 ```
 -- คำนวณและตั้งค่าใหม่
 -- สำหรับระบบ 2GB: 512MB (25%)
